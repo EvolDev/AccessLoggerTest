@@ -68,9 +68,9 @@ class AccessLogger
         return array_count_values($this->parser->getParserStatusCodes()->parseStatusCodes());
     }
 
-    public function getTrafficCount()
+    public function getTrafficSum()
     {
-        return count($this->parser->getParserTraffic()->parseTraffic());
+        return array_sum($this->parser->getParserTraffic()->parseTraffic());
     }
 
     /**
@@ -82,7 +82,7 @@ class AccessLogger
         $output = [
             "views" => $this->getViews(),
             "urls" => $this->getUniqueIpAddressCount(),
-            "traffic" => $this->getTrafficCount(),
+            "traffic" => $this->getTrafficSum(),
             "crawlers" => $this->getCrawlersCountValues(),
             "StatusCodes" => $this->getStatusCodeCountValues(),
         ];

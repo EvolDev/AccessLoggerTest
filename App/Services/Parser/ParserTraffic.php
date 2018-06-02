@@ -16,9 +16,10 @@ class ParserTraffic
 
     public function parseTraffic()
     {
-        $pattern = "/(?!HTTP[^\"]*\") (?!\d{3} )(\d+ )/";
+        $pattern = "/(?:HTTP[^\"]*\"\s\d{3})(\s\d+)/";
         preg_match_all($pattern, $this->subject, $matches);
-        $result = array_map('trim', $matches[0]);
+        $matches[0] = null;
+        $result = array_map('trim', $matches[1]);
 
         return $result;
     }
